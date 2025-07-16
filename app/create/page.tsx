@@ -3,6 +3,12 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { v4 as uuidv4 } from "uuid";
+const isPastDate = (inputDate: string) => {
+  const today = new Date();
+  today.setHours(0, 0, 0, 0); // Set time to midnight for comparison
+  const selectedDate = new Date(inputDate);
+  return selectedDate < today;
+};
 
 export default function CreateTask() {
   const router = useRouter();
@@ -13,27 +19,33 @@ export default function CreateTask() {
   const [priority, setPriority] = useState("Medium");
   const [status, setStatus] = useState("To Do");
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-const currentUser = sessionStorage.getItem("currentUser");
+ const handleSubmit = (e: React.FormEvent) => {
+  e.preventDefault();
 
-    const newTask = {
-      id: uuidv4(), // Automatically generate unique ID
-      title,
-      description,
-      dueDate,
-      priority,
-      status,
-      createdAt: new Date().toISOString(),
-        createdBy: currentUser!, // <-- Save the current user
+  if (isPastDate(dueDate)) {
+    alert("You cannot create a task with a past due date.");
+    return;
+  }
 
-    };
+  const currentUser = sessionStorage.getItem("currentUser");
 
-    const existingTasks = JSON.parse(localStorage.getItem("tasks") || "[]");
-    localStorage.setItem("tasks", JSON.stringify([...existingTasks, newTask]));
-
-    router.push("/home");
+  const newTask = {
+    id: uuidv4(),
+    title,
+    description,
+    dueDate,
+    priority,
+    status,
+    createdAt: new Date().toISOString(),
+    createdBy: currentUser!,
   };
+
+  const existingTasks = JSON.parse(localStorage.getItem("tasks") || "[]");
+  localStorage.setItem("tasks", JSON.stringify([...existingTasks, newTask]));
+
+  router.push("/home");
+};
+
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-100 to-slate-300 flex items-center justify-center p-6">

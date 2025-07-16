@@ -12,6 +12,14 @@ interface Task {
   status: string;
 }
 
+function isPastDate(inputDate: string) {
+  const today = new Date();
+  today.setHours(0, 0, 0, 0); // Set time to midnight for accurate comparison
+
+  const selectedDate = new Date(inputDate);
+  return selectedDate < today;
+}
+
 export default function EditTaskPage() {
   const router = useRouter();
   const params = useParams();
@@ -38,18 +46,31 @@ export default function EditTaskPage() {
       [e.target.name]: e.target.value,
     });
   };
+const handleSubmit = (e: React.FormEvent) => {
+  e.preventDefault();
+  if (!task) return;
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!task) return;
-
-    const tasks = JSON.parse(localStorage.getItem('tasks') || '[]');
-    const updatedTasks = tasks.map((t: Task) => (t.id === task.id ? task : t));
-
-    localStorage.setItem('tasks', JSON.stringify(updatedTasks));
-    alert('Task updated!');
-    router.push('/home');
+  // Check if due date is in the past
+  const isPastDate = (inputDate: string) => {
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    const selectedDate = new Date(inputDate);
+    return selectedDate < today;
   };
+
+  if (isPastDate(task.dueDate)) {
+    alert("You cannot set a task with a past due date.");
+    return;
+  }
+
+  const tasks = JSON.parse(localStorage.getItem('tasks') || '[]');
+  const updatedTasks = tasks.map((t: Task) => (t.id === task.id ? task : t));
+
+  localStorage.setItem('tasks', JSON.stringify(updatedTasks));
+  alert('Task updated!');
+  router.push('/home');
+};
+
 
   if (!task) return <div className="p-6">Loading...</div>;
 
@@ -64,6 +85,8 @@ export default function EditTaskPage() {
         <div className="space-y-4">
           <div>
             <label className="block text-gray-700 mb-1">Title</label>
+         
+         
             <input
               name="title"
               value={task.title}
@@ -86,6 +109,7 @@ export default function EditTaskPage() {
 
           <div>
             <label className="block text-gray-700 mb-1">Due Date</label>
+            
             <input
               type="date"
               name="dueDate"
