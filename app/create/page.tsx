@@ -46,30 +46,32 @@ export default function CreateTask() {
   router.push("/home");
 };
 
-
-  return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-100 to-slate-300 flex items-center justify-center p-6">
+ return (
+    <div className="min-h-screen bg-gradient-to-br from-indigo-200 via-purple-200 to-pink-200 flex items-center justify-center p-6">
       <form
         onSubmit={handleSubmit}
-        className="bg-white p-8 rounded-2xl shadow-2xl w-full max-w-xl space-y-6"
+        className="backdrop-blur-xl bg-white/30 border border-white/20 rounded-3xl shadow-2xl p-10 w-full max-w-xl space-y-6 animate-fade-in-up"
       >
-        <h1 className="text-3xl font-bold text-center text-gray-800">Create New Task</h1>
+        <h1 className="text-4xl font-extrabold text-gray-900 text-center drop-shadow-md">
+          Create New Task
+        </h1>
 
-        <div className="space-y-4">
+        <div className="space-y-5">
           <input
             type="text"
             placeholder="Title"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             required
-            className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+            className="w-full p-4 bg-white/50 border border-gray-300 rounded-xl text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-yellow-400"
           />
+          
           <textarea
             placeholder="Description"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
             required
-            className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+            className="w-full p-4 bg-white/50 border border-gray-300 rounded-xl text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-yellow-400"
           />
 
           <input
@@ -77,16 +79,16 @@ export default function CreateTask() {
             value={dueDate}
             onChange={(e) => setDueDate(e.target.value)}
             required
-            className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+            className="w-full p-4 bg-white/50 border border-gray-300 rounded-xl text-gray-900 focus:outline-none focus:ring-2 focus:ring-yellow-400"
           />
 
           <div className="flex gap-4">
             <div className="flex-1">
-              <label className="block text-gray-600 mb-1">Priority</label>
+              <label className="block text-gray-800 font-medium mb-1">Priority</label>
               <select
                 value={priority}
                 onChange={(e) => setPriority(e.target.value)}
-                className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+                className="w-full p-4 bg-white/50 border border-gray-300 rounded-xl text-gray-900 focus:outline-none focus:ring-2 focus:ring-yellow-400"
               >
                 <option>Low</option>
                 <option>Medium</option>
@@ -95,11 +97,11 @@ export default function CreateTask() {
             </div>
 
             <div className="flex-1">
-              <label className="block text-gray-600 mb-1">Status</label>
+              <label className="block text-gray-800 font-medium mb-1">Status</label>
               <select
                 value={status}
                 onChange={(e) => setStatus(e.target.value)}
-                className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+                className="w-full p-4 bg-white/50 border border-gray-300 rounded-xl text-gray-900 focus:outline-none focus:ring-2 focus:ring-yellow-400"
               >
                 <option>To Do</option>
                 <option>In Progress</option>
@@ -111,9 +113,9 @@ export default function CreateTask() {
 
         <button
           type="submit"
-          className="w-full py-3 bg-blue-500 hover:bg-blue-600 text-white rounded-lg shadow-lg transition"
+          className="w-full py-4 bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 text-gray-900 font-bold rounded-xl shadow-md transition-all transform hover:scale-105"
         >
-          Create Task
+          ➕ Create Task
         </button>
       </form>
     </div>

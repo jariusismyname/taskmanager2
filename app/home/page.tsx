@@ -1,7 +1,4 @@
 
-
-
-
   //... rest of your code (no changes needed to task logic)
 'use client';
 
@@ -48,24 +45,24 @@ export default function Home() {
     "In Progress",
     "Completed",
   ];
-
-  return (
-    
-    <div className="min-h-screen bg-gradient-to-br from-slate-100 to-slate-300 p-6">
+return (
+    <div className="min-h-screen bg-gradient-to-br from-indigo-300 via-purple-300 to-pink-300 p-6 font-sans">
       <div className="flex justify-between items-center mb-8">
-        <h1 className="text-4xl font-bold text-gray-800">Task Manager</h1>
+        <h2 className="text-4xl font-extrabold text-black drop-shadow-lg animate-fade-in-up">
+          Task Manager 
+        </h2>
         <button
           onClick={() => router.push("/create")}
-          className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-lg shadow transition"
+          className="bg-gradient-to-r from-blue-500 to-purple-500 hover:from-purple-500 hover:to-blue-500 text-black py-2 px-6 rounded-full shadow-lg transition-all duration-300 transform hover:scale-105 hover:shadow-2xl"
         >
           + Add Task
         </button>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 animate-fade-in">
         {categories.map((category) => (
-          <div key={category}>
-            <h2 className="text-2xl font-semibold text-gray-700 mb-4">
+          <div key={category} className="space-y-4">
+            <h2 className="text-2xl font-semibold text-black/90 mb-4 underline decoration-white/50">
               {category}
             </h2>
             <div className="space-y-4">
@@ -74,36 +71,43 @@ export default function Home() {
                 .map((task) => (
                   <div
                     key={task.id}
-                    className="bg-white p-4 rounded-xl shadow hover:shadow-lg transition cursor-pointer border border-gray-200"
                     onClick={() => router.push(`/task/${task.id}`)}
+                    className="bg-white/30 backdrop-blur-md border border-white/20 rounded-2xl p-5 shadow-xl hover:shadow-2xl transition-all transform hover:scale-[1.02] cursor-pointer group"
                   >
-                    <h3 className="text-lg font-semibold text-gray-800">{task.title}</h3>
-                    <p className="text-sm text-gray-500 truncate">{task.description}</p>
+                    <h3 className="text-xl font-bold text-black group-hover:text-indigo-100 transition-all">
+                      {task.title}
+                    </h3>
+                    <p className="text-sm text-black/70 mt-2 line-clamp-2">
+                      {task.description}
+                    </p>
 
-                    <div className="flex gap-2 mt-4">
+                    <div className="flex gap-3 mt-4">
                       <button
                         onClick={(e) => {
                           e.stopPropagation();
-                router.push(`/edit/${task.id}`);
+                          router.push(`/edit/${task.id}`);
                         }}
-                        className="bg-yellow-400 hover:bg-yellow-500 text-white text-sm px-3 py-1 rounded transition"
+                        className="bg-yellow-400 hover:bg-yellow-500 text-black text-sm px-4 py-1.5 rounded-full shadow transition-all hover:scale-105"
                       >
-                        Edit
+                        ✏️ Edit
                       </button>
                       <button
                         onClick={(e) => {
                           e.stopPropagation();
                           deleteTask(task.id);
                         }}
-                        className="bg-red-500 hover:bg-red-600 text-white text-sm px-3 py-1 rounded transition"
+                        className="bg-red-500 hover:bg-red-600 text-black text-sm px-4 py-1.5 rounded-full shadow transition-all hover:scale-105"
                       >
-                        Delete
+                        🗑️ Delete
                       </button>
                     </div>
                   </div>
                 ))}
+
               {tasks.filter((task) => task.status === category).length === 0 && (
-                <p className="text-gray-500 text-sm">No tasks in this category.</p>
+                <p className="text-black/60 text-sm italic animate-pulse">
+                  No tasks in this category.
+                </p>
               )}
             </div>
           </div>

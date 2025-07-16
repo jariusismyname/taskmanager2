@@ -51,34 +51,35 @@ export default function TaskDetailPage() {
   };
 
   if (!task) return null;
-
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-100 to-slate-300 p-6">
-      <div className="bg-white shadow-xl rounded-3xl p-8 w-full max-w-lg space-y-6">
-        <h1 className="text-3xl font-bold text-gray-800">{task.title}</h1>
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-indigo-300 via-purple-300 to-pink-300 p-6">
+      <div className="backdrop-blur-xl bg-white/20 border border-white/30 shadow-2xl rounded-3xl p-8 w-full max-w-lg space-y-6 animate-fade-in-up">
+        <h1 className="text-4xl font-extrabold text-black drop-shadow-lg text-center">
+          {task.title}
+        </h1>
 
-        <div className="space-y-4 text-gray-600">
+        <div className="space-y-4 text-black/90">
           <div>
-            <label className="block text-sm font-semibold text-gray-500 mb-1">Description:</label>
-            <p>{task.description}</p>
+            <label className="block text-sm font-semibold text-black/70 mb-1">Description:</label>
+            <p className="text-base">{task.description}</p>
           </div>
 
           <div className="grid grid-cols-2 gap-4 text-sm">
             <div>
-              <label className="block text-gray-500">Status:</label>
-              <p>{task.status}</p>
+              <label className="block text-black/60">Status:</label>
+              <p className="font-medium">{task.status}</p>
             </div>
             <div>
-              <label className="block text-gray-500">Priority:</label>
-              <p>{task.priority}</p>
+              <label className="block text-black/60">Priority:</label>
+              <p className="font-medium">{task.priority}</p>
             </div>
             <div>
-              <label className="block text-gray-500">Due Date:</label>
-              <p>{task.dueDate}</p>
+              <label className="block text-black/60">Due Date:</label>
+              <p className="font-medium">{task.dueDate}</p>
             </div>
             <div>
-              <label className="block text-gray-500">Created At:</label>
-              <p>{new Date(task.createdAt).toLocaleString()}</p>
+              <label className="block text-black/60">Created At:</label>
+              <p className="font-medium">{new Date(task.createdAt).toLocaleString()}</p>
             </div>
           </div>
         </div>
@@ -86,24 +87,24 @@ export default function TaskDetailPage() {
         <div className="flex gap-4 mt-6">
           <button
             onClick={handleEdit}
-            className="flex-1 bg-yellow-400 hover:bg-yellow-500 text-white py-3 rounded-xl shadow-lg transition"
+            className="flex-1 bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 text-black py-3 rounded-xl shadow-lg transition-all transform hover:scale-105"
           >
-            Edit Task
+            ✏️ Edit
           </button>
 
           <button
             onClick={handleDelete}
-            className="flex-1 bg-red-500 hover:bg-red-600 text-white py-3 rounded-xl shadow-lg transition"
+            className="flex-1 bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-black py-3 rounded-xl shadow-lg transition-all transform hover:scale-105"
           >
-            Delete Task
+            🗑️ Delete
           </button>
         </div>
 
         <button
           onClick={() => router.push("/home")}
-          className="mt-6 w-full bg-gray-300 hover:bg-gray-400 text-gray-700 py-2 rounded-xl transition"
+          className="mt-6 w-full bg-white/20 hover:bg-white/30 text-black py-2 rounded-xl shadow-md transition-all transform hover:scale-105"
         >
-          Back to Home
+          ← Back to Home
         </button>
       </div>
     </div>

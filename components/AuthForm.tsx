@@ -1,5 +1,10 @@
 'use client';
-
+interface User {
+  gmail: string;
+  password: string;
+  securityQuestion: string;
+  securityAnswer: string;
+}
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import bcrypt from "bcryptjs";
@@ -39,8 +44,10 @@ export default function AuthForm({ type }: { type: "login" | "register" }) {
         return alert("Please select a security question and provide an answer.");
       }
 
-      const userExists = users.find((u: any) => u.gmail === gmail);
-      if (userExists) return alert("User already exists");
+const users: User[] = JSON.parse(localStorage.getItem("users") || "[]");
+
+const userExists = users.find((u) => u.gmail === gmail);  
+    if (userExists) return alert("User already exists");
 
       const hashedPassword = bcrypt.hashSync(password, 8);
 

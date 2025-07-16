@@ -73,59 +73,59 @@ const handleSubmit = (e: React.FormEvent) => {
 
 
   if (!task) return <div className="p-6">Loading...</div>;
-
-  return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-100 to-slate-300 flex items-center justify-center p-6">
+return (
+    <div className="min-h-screen bg-gradient-to-br from-indigo-300 via-purple-300 to-pink-300 flex items-center justify-center p-6">
       <form
         onSubmit={handleSubmit}
-        className="w-full max-w-lg bg-white rounded-2xl shadow-xl p-8 space-y-6"
+        className="w-full max-w-lg backdrop-blur-xl bg-white/20 border border-white/30 shadow-2xl rounded-3xl p-8 space-y-6 animate-fade-in-up"
       >
-        <h1 className="text-3xl font-bold text-gray-800 text-center">Edit Task</h1>
+        <h1 className="text-4xl font-extrabold text-black drop-shadow-lg text-center">
+          Edit Task
+        </h1>
 
-        <div className="space-y-4">
+        <div className="space-y-4 text-black/90">
           <div>
-            <label className="block text-gray-700 mb-1">Title</label>
-         
-         
+            <label className="block text-black/70 mb-1">Title</label>
             <input
               name="title"
               value={task.title}
               onChange={handleChange}
-              className="w-full p-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-400"
+              className="w-full p-3 bg-white/10 border border-white/30 rounded-xl text-black placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-yellow-400"
+              placeholder="Enter task title"
               required
             />
           </div>
 
           <div>
-            <label className="block text-gray-700 mb-1">Description</label>
+            <label className="block text-black/70 mb-1">Description</label>
             <textarea
               name="description"
               value={task.description}
               onChange={handleChange}
               rows={4}
-              className="w-full p-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-400"
+              className="w-full p-3 bg-white/10 border border-white/30 rounded-xl text-black placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-yellow-400"
+              placeholder="Task details..."
             ></textarea>
           </div>
 
           <div>
-            <label className="block text-gray-700 mb-1">Due Date</label>
-            
+            <label className="block text-black/70 mb-1">Due Date</label>
             <input
               type="date"
               name="dueDate"
               value={task.dueDate}
               onChange={handleChange}
-              className="w-full p-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-400"
+              className="w-full p-3 bg-white/10 border border-white/30 rounded-xl text-black focus:outline-none focus:ring-2 focus:ring-yellow-400"
             />
           </div>
 
           <div>
-            <label className="block text-gray-700 mb-1">Priority</label>
+            <label className="block text-black/70 mb-1">Priority</label>
             <select
               name="priority"
               value={task.priority}
               onChange={handleChange}
-              className="w-full p-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-400"
+              className="w-full p-3 bg-white/10 border border-white/30 rounded-xl text-black focus:outline-none focus:ring-2 focus:ring-yellow-400"
             >
               <option>Low</option>
               <option>Medium</option>
@@ -134,12 +134,12 @@ const handleSubmit = (e: React.FormEvent) => {
           </div>
 
           <div>
-            <label className="block text-gray-700 mb-1">Status</label>
+            <label className="block text-black/70 mb-1">Status</label>
             <select
               name="status"
               value={task.status}
               onChange={handleChange}
-              className="w-full p-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-400"
+              className="w-full p-3 bg-white/10 border border-white/30 rounded-xl text-black focus:outline-none focus:ring-2 focus:ring-yellow-400"
             >
               <option>To Do</option>
               <option>In Progress</option>
@@ -150,9 +150,17 @@ const handleSubmit = (e: React.FormEvent) => {
 
         <button
           type="submit"
-          className="w-full py-3 bg-blue-500 hover:bg-blue-600 text-white rounded-xl transition shadow-md"
+          className="w-full py-3 bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 text-black rounded-xl shadow-lg transition-all transform hover:scale-105"
         >
-          Save Changes
+          💾 Save Changes
+        </button>
+
+        <button
+          type="button"
+          onClick={() => router.push('/home')}
+          className="w-full py-2 mt-3 bg-white/20 hover:bg-white/30 text-black rounded-xl transition-all transform hover:scale-105"
+        >
+          ← Back to Home
         </button>
       </form>
     </div>
