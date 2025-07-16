@@ -1,3 +1,8 @@
+
+
+
+
+  //... rest of your code (no changes needed to task logic)
 'use client';
 
 import { useEffect, useState } from "react";
@@ -8,16 +13,29 @@ type Task = {
   title: string;
   description: string;
   status: "To Do" | "In Progress" | "Completed";
+  createdBy: string; // New field to track the task owner
 };
+
 
 export default function Home() {
   const [tasks, setTasks] = useState<Task[]>([]);
   const router = useRouter();
 
   useEffect(() => {
-    const storedTasks = JSON.parse(localStorage.getItem("tasks") || "[]");
-    setTasks(storedTasks);
-  }, []);
+  const currentUser = sessionStorage.getItem("currentUser");
+  if (!currentUser) {
+    alert("Please log in first!");
+    router.push("/login");
+    return;
+  }
+
+  const storedTasks = JSON.parse(localStorage.getItem("tasks") || "[]");
+
+  // Only show tasks created by the logged-in user
+  const userTasks = storedTasks.filter((task: Task) => task.createdBy === currentUser);
+  
+  setTasks(userTasks);
+}, [router]);
 
   const deleteTask = (id: string) => {
     const filtered = tasks.filter((task) => task.id !== id);

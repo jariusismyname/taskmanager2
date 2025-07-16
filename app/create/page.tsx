@@ -15,6 +15,7 @@ export default function CreateTask() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+const currentUser = sessionStorage.getItem("currentUser");
 
     const newTask = {
       id: uuidv4(), // Automatically generate unique ID
@@ -24,6 +25,8 @@ export default function CreateTask() {
       priority,
       status,
       createdAt: new Date().toISOString(),
+        createdBy: currentUser!, // <-- Save the current user
+
     };
 
     const existingTasks = JSON.parse(localStorage.getItem("tasks") || "[]");
