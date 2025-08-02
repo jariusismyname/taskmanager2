@@ -74,7 +74,7 @@ return (
                     onClick={() => router.push(`/task/${task.id}`)}
                     className="bg-white/30 backdrop-blur-md border border-white/20 rounded-2xl p-5 shadow-xl hover:shadow-2xl transition-all transform hover:scale-[1.02] cursor-pointer group"
                   >
-                    <h3 className="text-xl font-bold text-black group-hover:text-indigo-100 transition-all">
+                    <h3 className="text-xl font-bold text-black group-hover:text-black-100 transition-all">
                       {task.title}
                     </h3>
                     <p className="text-sm text-black/70 mt-2 line-clamp-2">

@@ -80,10 +80,10 @@ const userExists = users.find((u) => u.gmail === gmail);
         className="w-full max-w-md bg-white/20 backdrop-blur-lg rounded-3xl shadow-2xl p-10 space-y-6 border border-white/30 transition-all"
       >
         <div className="text-center space-y-2">
-          <h1 className="text-4xl font-extrabold text-white drop-shadow-sm">
+          <h1 className="text-4xl font-extrabold text-black drop-shadow-sm">
             {type === "login" ? "Welcome Back" : "Join Us"}
           </h1>
-          <p className="text-white/70 text-sm">
+          <p className="text-black/70 text-sm">
             {type === "login" ? "Login to your account" : "Create a new account"}
           </p>
         </div>
@@ -120,7 +120,7 @@ const userExists = users.find((u) => u.gmail === gmail);
               <select
                 value={securityQuestion}
                 onChange={(e) => setSecurityQuestion(e.target.value)}
-                className="w-full p-3 rounded-xl bg-white/20 text-black border border-white/30 focus:outline-none focus:ring-2 focus:ring-white/60 transition"
+                className="w-full p-3 rounded-xl bg-black/20 text-white border border-white/30 focus:outline-none focus:ring-2 focus:ring-white/60 transition"
                 required
               >
                 <option value="">Select Security Question</option>
@@ -143,7 +143,7 @@ const userExists = users.find((u) => u.gmail === gmail);
 
         <button
           type="submit"
-          className="w-full py-3 bg-white/30 hover:bg-white/40 text-white font-semibold rounded-xl transition shadow-md backdrop-blur-md"
+          className="w-full py-3 bg-white/30 hover:bg-white/40 text-black font-semibold rounded-xl transition shadow-md backdrop-blur-md"
         >
           {type === "login" ? "Login" : "Register"}
         </button>
